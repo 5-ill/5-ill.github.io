@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>속았지?</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+      background: linear-gradient(145deg, #f8fbff 0%, #eef5ff 42%, #d8e7ff 100%);
+      color: #0f2d5c;
+      text-align: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 430px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(33, 84, 160, 0.14);
+      border-radius: 28px;
+      padding: 34px 24px 28px;
+      box-shadow: 0 18px 50px rgba(24, 73, 146, 0.14);
+      animation: pop 0.45s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(33, 84, 160, 0.06), rgba(255, 255, 255, 0));
+      pointer-events: none;
+    }
+
+    .emoji {
+      font-size: 56px;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.1rem;
+      line-height: 1.2;
+      color: #123d7a;
+      position: relative;
+      z-index: 1;
+    }
+
+    p {
+      margin: 14px 0 0;
+      color: #2b4b7c;
+      line-height: 1.7;
+      font-size: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #e8f1ff;
+      color: #2154a0;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    button {
+      width: 100%;
+      border: 0;
+      border-radius: 16px;
+      padding: 15px 16px;
+      font-size: 0.97rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      opacity: 0.97;
+    }
+
+    .primary {
+      background: #2154a0;
+      color: #ffffff;
+      box-shadow: 0 10px 24px rgba(33, 84, 160, 0.22);
+    }
+
+    .ghost {
+      background: #f5f9ff;
+      color: #2154a0;
+      border: 1px solid rgba(33, 84, 160, 0.18);
+    }
+
+    .small {
+      margin-top: 18px;
+      font-size: 0.87rem;
+      color: #5a76a1;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+      min-height: 44px;
+    }
+
+    @keyframes pop {
+      from {
+        transform: scale(0.97);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 18px;
+      }
+
+      .card {
+        padding: 30px 20px 24px;
+        border-radius: 24px;
+      }
+
+      h1 {
+        font-size: 1.95rem;
+      }
+
+      p {
+        font-size: 0.97rem;
+      }
+
+      button {
+        font-size: 0.94rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="emoji">💙</div>
+    <h1>속았지?</h1>
+    <p>
+      만우절 장난이었습니다.<br />
+      링크 열어본 당신, 투표 하셔야 겠죠?
+    </p>
+    <div class="tag">APRIL FOOLS</div>
+
+    <div class="buttons">
+      <button class="ghost" onclick="leaveSite()">사이트에서 나가기</button>
+      <button class="primary" onclick="location.reload()">진짜 스타벅스 기프티콘이 나올때까지 새로고침하기</button>
+    </div>
+
+    <div class="small" id="message">기프티콘은 없지만 클릭은 이미 완료되셨습니다 🙂</div>
+  </main>
+
+  <script>
+    function leaveSite() {
+      const message = document.getElementById('message');
+      message.textContent = '쉽지 않죠? 이미 들어오신 이상 투표만 생각하시면 됩니다 😌';
+
+      if (window.history.length > 1) {
+        setTimeout(() => {
+          window.history.back();
+        }, 500);
+      }
+    }
+  </script>
+</body>
+</html>
