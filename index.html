@@ -179,13 +179,40 @@
       <button class="primary" onclick="location.reload()">진짜 스타벅스 기프티콘이 나올때까지 새로고침하기</button>
     </div>
 
-    <div class="small" id="message">기프티콘은 없지만 혹시 새로고침하면 나올수도? 🙂</div>
+    <div class="small" id="message">기프티콘은 없지만 클릭은 이미 완료되셨습니다 🙂</div>
   </main>
 
   <script>
+    const refreshKey = 'aprilFoolsRefreshCount';
+    const redirectAfter = 5;
+    const redirectUrl = '/second.html';
+
+    function trackRefreshAndRedirect() {
+      const navigationEntries = performance.getEntriesByType('navigation');
+      const isReload = navigationEntries.length > 0 && navigationEntries[0].type === 'reload';
+
+      let count = Number(localStorage.getItem(refreshKey) || '0');
+
+      if (isReload) {
+        count += 1;
+      } else if (!sessionStorage.getItem('aprilFoolsVisited')) {
+        count = 0;
+        sessionStorage.setItem('aprilFoolsVisited', 'true');
+      }
+
+      localStorage.setItem(refreshKey, String(count));
+
+      if (count >= redirectAfter) {
+        localStorage.removeItem(refreshKey);
+        window.location.href = redirectUrl;
+      }
+    }
+
     function goToClubSite() {
       window.location.href = 'https://www.ycc.club/';
     }
+
+    trackRefreshAndRedirect();
   </script>
 </body>
 </html>
