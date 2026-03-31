@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>한국고전문학의이해</title>
+  <title>한국고전문학의이해 설문</title>
   <style>
     * {
       box-sizing: border-box;
@@ -175,7 +175,7 @@
     <div class="tag">APRIL FOOLS</div>
 
     <div class="buttons">
-      <button class="ghost" onclick="leaveSite()">사이트에서 나가기</button>
+      <button class="ghost" onclick="goToClubSite()">동아리 홈페이지 구경가기</button>
       <button class="primary" onclick="location.reload()">진짜 스타벅스 기프티콘이 나올때까지 새로고침하기</button>
     </div>
 
@@ -183,16 +183,7 @@
   </main>
 
   <script>
-    function leaveSite() {
-      const message = document.getElementById('message');
-      message.textContent = '쉽지 않죠? 이미 들어오신 이상 투표만 생각하시면 됩니다 😌';
-
-      if (window.history.length > 1) {
-        setTimeout(() => {
-          window.history.back();
-        }, 500);
-      }
-    }
+    function goToClubSite()
   </script>
 </body>
 </html>
